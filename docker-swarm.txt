@@ -1,0 +1,52 @@
+docker
+hamania@gmail.com
+
+docker info | findstr swarm
+
+docker swarm init
+Swarm initialized: current node (kxn1tirr0vul7bgv9riin4c9e) is now a manager.
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-20irqze9axlsa6fdbhmeu36anfgc3uit4cqwf3949qd1txzbn3-3hrs8hamhepc13g8iid3k4fqa 192.168.65.3:2377
+	
+	docker swarm init
+Swarm initialized: current node (k23bpsg4ipridge8s210ypkuv) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token
+	
+	
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+To add a manager to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-6bgvtpu65yss03gzt1o01bhep13j8nnrm851o3hgd36b4kjaq4-52dsosewslbihnbj2plqrb7ep 192.168.65.3:2377
+	
+	
+docker network create --driver overlay portainer_net
+fev1v272w3qd2w2hfuduef6gg
+
+notepad++ portainer-stack.yml
+
+docker stack deploy -c .\portainer-stack.yml portainer
+Since --detach=false was not specified, tasks will be created in the background.
+In a future release, --detach=false will become the default.
+Creating network portainer_default
+Creating service portainer_portainer
+Creating service portainer_agent
+
+
+https://localhost:9443
+
+
+docker run -d 
+  -p 9000:9000 
+  -p 9443:9443 
+  -p 8000:8000 
+  --name portainer 
+  --restart=always 
+  -v portainer_data:/data 
+  portainer/portainer-ce:latest 
+  --host=unix:///var/run/docker.sock
+  
+  
