@@ -6,3 +6,4 @@
 
 @REM docker stack rm my_project
 docker stack deploy -c my_project_stack.yml my_project
+@REM docker stack ps my_project
