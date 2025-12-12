@@ -4,4 +4,5 @@ docker build -t my_project_api:1.0 ./my_project_api
 docker build -t my_project_vue:1.0 ./my_project_vue
 @REM docker run -p 8080:80 my_vue_project:1.0
 
+@REM docker stack rm my_project
 docker stack deploy -c my_project_stack.yml my_project
