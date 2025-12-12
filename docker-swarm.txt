@@ -50,3 +50,6 @@ docker run -d
   --host=unix:///var/run/docker.sock
   
   
+docker bash with php
+
+  docker run -it --rm php:8.4-fpm sh
