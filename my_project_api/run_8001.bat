@@ -1,1 +1,0 @@
-symfony server:start --allow-all-ip

@@ -6,7 +6,12 @@ import TaskList from './components/TaskList.vue'
 </script>
 
 <template>
-  <div>
+
+  <TaskList msg = "TasksList"/>
+
+  <HelloWorld msg="Vite + Vue" />
+  
+  <div style="font-size: xx-small;">
     <a href="https://vite.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
@@ -14,9 +19,6 @@ import TaskList from './components/TaskList.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-
-  <HelloWorld msg="Vite + Vue" />
-  <TaskList msg="Vite + Vue" />
 
 </template>
 

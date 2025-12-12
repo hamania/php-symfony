@@ -36,20 +36,6 @@ Creating service portainer_portainer
 Creating service portainer_agent
 
 
-https://localhost:9443
+docker run -it --rm php:8.4-fpm sh
 
-
-docker run -d 
-  -p 9000:9000 
-  -p 9443:9443 
-  -p 8000:8000 
-  --name portainer 
-  --restart=always 
-  -v portainer_data:/data 
-  portainer/portainer-ce:latest 
-  --host=unix:///var/run/docker.sock
-  
-  
-docker bash with php
-
-  docker run -it --rm php:8.4-fpm sh
+docker exec -it $cid sh

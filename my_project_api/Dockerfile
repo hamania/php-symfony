@@ -35,3 +35,6 @@ EXPOSE 9000
 
 # Default command
 CMD ["php-fpm"]
+
+# Run migrations at container start
+# CMD php bin/console doctrine:migrations:migrate --no-interaction && php-fpm
