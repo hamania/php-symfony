@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  symfony-php:
+    image: myregistry/symfony-php:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - symfony-net
+
+  symfony-nginx:
+    image: myregistry/symfony-nginx:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - symfony-net
+
+  vue-frontend:
+    image: myregistry/vue-frontend:latest
+    ports:
+      - "81:80"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - symfony-net
+
+networks:
+  symfony-net:
+    driver: overlay
