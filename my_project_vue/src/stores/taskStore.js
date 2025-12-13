@@ -14,8 +14,9 @@ export const useTaskStore = defineStore("taskStore", {
   actions: {
     async fetchTasks() {
       try {
-        const res = await axios.get(axios.baseURL + "/tasks");
-        this.tasks = res.data["member"];
+        const res = await axios.get(axios.baseURL + "/tasks?deleted=false");
+        this.tasks = res.data["member"] || [];
+        this.tasks = this.tasks.filter(task => !task.deleted);
       } catch (error) {
         console.error("Error fetching tasks:", error);
       }
@@ -25,7 +26,8 @@ export const useTaskStore = defineStore("taskStore", {
       try {
         const payload = {
           name: task.name,
-          completed: task.completed ?? false
+          completed: task.completed ?? false,
+          deleted:false,
         };
         const options = {
           headers: {
@@ -56,6 +58,25 @@ export const useTaskStore = defineStore("taskStore", {
           console.error('Error updating task:', err)
         }
       }
-    }
+    },
+
+    async deleteTask(id) {
+      const task = this.tasks.find(t => t.id === id)
+      if (task) {
+        const payload = { ...task, deleted: true }
+        const options = {
+          headers: {
+            'Content-Type': 'application/merge-patch+json'
+          }
+        };
+        try {
+          await axios.patch(axios.baseURL +`/tasks/${id}`, payload, options)
+          task.deleted = true;
+          this.tasks = this.tasks.filter(task => !task.deleted);
+        } catch (err) {
+          console.error('Error updating task:', err)
+        }
+      }
+    },
   },
 });

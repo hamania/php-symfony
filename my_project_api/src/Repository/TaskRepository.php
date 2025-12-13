@@ -16,6 +16,15 @@ class TaskRepository extends ServiceEntityRepository
         parent::__construct($registry, Task::class);
     }
 
+    public function findAllActive (): array
+    {
+        return $this->createQueryBuilder('task')
+            ->where('task.deleted = 0')
+            ->orderBy('task.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Task[] Returns an array of Task objects
     //     */

@@ -52,7 +52,7 @@ services:
       restart_policy:
         condition: on-failure    
     ports:
-      - "18000:80"
+      - "80:80"
     networks: [mynet]
 
 networks:

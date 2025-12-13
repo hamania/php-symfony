@@ -11,4 +11,6 @@
 # brew install symfony
 
 composer install
-symfony server:start --port=8001 --allow-all-ip 
+php bin/console cache:clear
+php bin/console doctrine:migrations:migrate
+symfony server:start --port=8001 --allow-all-ip

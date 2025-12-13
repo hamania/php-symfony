@@ -38,6 +38,9 @@ defineProps({
         <button @click="taskStore.toggleTask(task.id)">
           {{ task.completed ? 'Undo' : 'Complete' }}
         </button>
+
+        <!-- Delete button -->
+        <button @click="taskStore.deleteTask(task.id)">Delete</button>
       </li>
     </ul>
   </div>
