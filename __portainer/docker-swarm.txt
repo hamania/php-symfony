@@ -6,11 +6,16 @@ docker info | findstr swarm
 docker swarm init
 Swarm initialized: current node (kxn1tirr0vul7bgv9riin4c9e) is now a manager.
 To add a worker to this swarm, run the following command:
-
+PC
     docker swarm join --token SWMTKN-1-20irqze9axlsa6fdbhmeu36anfgc3uit4cqwf3949qd1txzbn3-3hrs8hamhepc13g8iid3k4fqa 192.168.65.3:2377
 	
 	docker swarm init
 Swarm initialized: current node (k23bpsg4ipridge8s210ypkuv) is now a manager.
+
+
+
+Mac 
+    docker swarm join --token SWMTKN-1-3jcvcxli9x1ojc9kgl0qo62a6tmfyde3iuzcplwodl9zj5ytkd-b8dhn90567lhggk4c9lvgfqdm 192.168.65.3:2377
 
 To add a worker to this swarm, run the following command:
 
