@@ -10,4 +10,5 @@
 # brew install composer
 # brew install symfony
 
+composer install
 symfony server:start --port=8001 --allow-all-ip 

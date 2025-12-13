@@ -4,6 +4,8 @@
 # admin:admin
 
 # docker stack rm portainer
+#  docker swarm init
+
 docker stack deploy -c portainer-stack-with-agent.yml portainer 
 docker stack ps portainer
 

@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 
 axios.baseURL = import.meta.env.VITE_BASE_API_URL || "http://localhost:8001/api";
-if (axios.baseURL.includes("http")) {
+if (!axios.baseURL.includes("http")) {
   axios.baseURL = window.location.origin + axios.baseURL;
 }
 console.log("axios.baseURL:", axios.baseURL);
