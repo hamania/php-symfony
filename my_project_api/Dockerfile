@@ -30,6 +30,8 @@ COPY . .
 # Ensure cache/logs are writable
 RUN mkdir -p var/cache var/log && chown -R www-data:www-data var
 
+# COPY nginx_api.conf /etc/nginx/conf.d/default.conf
+
 # Expose FPM port
 EXPOSE 9000
 
