@@ -5,9 +5,12 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 #[ApiResource]
+#[ApiFilter(BooleanFilter::class, properties: ['deleted'])]
 class Task
 {
     #[ORM\Id]
@@ -18,8 +21,11 @@ class Task
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?bool $completed = null;
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private ?bool $completed = false;
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private ?bool $deleted = false;
 
     public function getId(): ?int
     {
@@ -46,6 +52,18 @@ class Task
     public function setCompleted(bool $completed): static
     {
         $this->completed = $completed;
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(bool $deleted): static
+    {
+        $this->deleted = $deleted;
 
         return $this;
     }
