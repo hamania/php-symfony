@@ -31,3 +31,13 @@ docker run --rm \
   -e DATABASE_URL=$DATABASE_URL \
   my_project_api:${MY_PROJECT_VERSION} \
   php bin/console doctrine:migrations:migrate --no-interaction
+
+  export idVue=$(docker ps | grep vue | awk '{print $1}')
+  echo $idVue
+  docker exec -it $idVue sh
+
+
+  export idApi=$(docker ps | grep api | awk '{print $1}')
+  echo $idApi
+  docker exec -it $idApi bash
+

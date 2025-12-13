@@ -15,15 +15,15 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-    ports:
-      - "15432:5432"
+    # ports:
+      # - "5432:5432"
     networks: [mynet]
 
   # Symfony API (PHP-FPM)
   api:
     image: my_project_api:${MY_PROJECT_VERSION}
     environment:
-      DATABASE_URL: "postgresql://myuser:mypassword@db:15432/mydatabase?serverVersion=16&charset=utf8"
+      DATABASE_URL: "postgresql://myuser:mypassword@db:5432/mydatabase?serverVersion=16&charset=utf8"
     command: >
       sh -c "php bin/console doctrine:migrations:migrate --no-interaction &&
              php-fpm"
@@ -31,15 +31,22 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-    ports:
-      - "19000:9000"
+    # ports:
+      # - "9000:9000"
+    working_dir: /var/www/html
+    # volumes:
+      # - ./api:/var/www/html
     networks: [mynet]
 
   # Vue frontend
   vue:
+    # build: ./vue  
     image: my_project_vue:${MY_PROJECT_VERSION}
     environment:
       VITE_BASE_API_URL: "/api"
+    # volumes:
+    # - ./api/public:/usr/share/nginx/html/public
+
     deploy:
       replicas: 1
       restart_policy:

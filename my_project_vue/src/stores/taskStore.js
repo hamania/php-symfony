@@ -1,7 +1,11 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_API_URL || "http://localhost:8001/api";
+axios.baseURL = import.meta.env.VITE_BASE_API_URL || "http://localhost:8001/api";
+if (axios.baseURL.includes("http")) {
+  axios.baseURL = window.location.origin + axios.baseURL;
+}
+console.log("axios.baseURL:", axios.baseURL);
 
 export const useTaskStore = defineStore("taskStore", {
   state: () => ({
@@ -10,7 +14,7 @@ export const useTaskStore = defineStore("taskStore", {
   actions: {
     async fetchTasks() {
       try {
-        const res = await axios.get(axios.defaults.baseURL + "/tasks");
+        const res = await axios.get(axios.baseURL + "/tasks");
         this.tasks = res.data["member"];
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -28,7 +32,7 @@ export const useTaskStore = defineStore("taskStore", {
             'Content-Type': 'application/ld+json'
           }
         };
-        const res = await axios.post(axios.defaults.baseURL + "/tasks", payload, options)
+        const res = await axios.post(axios.baseURL + "/tasks", payload, options)
         // API Platform returns the created entity
         this.tasks.push(res.data)
       } catch (err) {
@@ -46,7 +50,7 @@ export const useTaskStore = defineStore("taskStore", {
           }
         };
         try {
-          await axios.patch(axios.defaults.baseURL +`/tasks/${id}`, payload, options)
+          await axios.patch(axios.baseURL +`/tasks/${id}`, payload, options)
           task.completed = !task.completed
         } catch (err) {
           console.error('Error updating task:', err)
