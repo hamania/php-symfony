@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export MY_PROJECT_TITLE="my_project"
-export MY_PROJECT_VERSION="1.2"
-echo $MY_PROJECT_TITLE: $MY_PROJECT_VERSION
+export MY_PROJECT_VERSION="1.3"
+echo $MY_PROJECT_TITLE:$MY_PROJECT_VERSION
 
 # exit
 
@@ -18,7 +18,7 @@ docker stack rm $MY_PROJECT_TITLE && docker stack ps $MY_PROJECT_TITLE
 
 
 # MY_PROJECT_VERSION=$MY_PROJECT_VERSION 
-docker stack deploy -c my_project_swarm.yml $MY_PROJECT_TITLE && docker stack ps $MY_PROJECT_TITLE
+docker stack deploy -c my_project_swarm_${MY_PROJECT_VERSION}.yml $MY_PROJECT_TITLE && docker stack ps $MY_PROJECT_TITLE
 
 docker stack ps $MY_PROJECT_TITLE
 

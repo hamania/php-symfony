@@ -25,7 +25,7 @@ FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Optional: custom Nginx config for Vue Router history mode
-# COPY nginx_vue.conf /etc/nginx/conf.d/default.conf
+COPY nginx_vue_api.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
