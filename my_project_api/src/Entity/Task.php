@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiFilter;
-use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[ApiResource]
+#[ApiResource] // 👈 This makes it visible in /docs
 #[ApiFilter(BooleanFilter::class, properties: ['deleted'])]
 class Task
 {
