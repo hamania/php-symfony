@@ -26,6 +26,6 @@ final class Version20251213194646 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE task DROP deleted');
+        $this->addSql('ALTER TABLE task DROP COLUMN IF EXISTS deleted');
     }
 }
