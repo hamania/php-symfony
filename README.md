@@ -30,7 +30,7 @@ bin/console make:migration
 bin/console doctrine:migrations:migrate
 
 # Update schema
-php bin/console cache:clear
+bin/console cache:clear
 
 bin/console doctrine:query:dql "SELECT p FROM App\Entity\Product p"
 bin/console doctrine:dbal:run-sql "SELECT * FROM product"
